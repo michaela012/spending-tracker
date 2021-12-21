@@ -10,6 +10,7 @@ pymysql = "*"
 flask-sqlalchemy = "*"
 sqlalchemy-utils = "*"
 phonenumbers = "*"
+flask-migrate = "*"
 
 [dev-packages]
 
