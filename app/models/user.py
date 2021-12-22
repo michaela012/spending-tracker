@@ -16,6 +16,7 @@ class User(db.Model):
     _phone_number,
     phone_country_code
   )
+  budget_categories = db.relationship("Budget", backref="user", lazy="dynamic")
 
   __table_args__ = (db.UniqueConstraint('_phone_number', 'phone_country_code'),)
 
