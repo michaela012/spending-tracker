@@ -1,5 +1,5 @@
 from app import db
-from sqlalchemy_utils import PhoneNumber
+from sqlalchemy_utils import PhoneNumber, PhoneNumberType
 
 
 class User(db.Model):
@@ -8,17 +8,12 @@ class User(db.Model):
   password_hash = db.Column(db.String(128))
   name = db.Column(db.String(120))
   total_budget = db.Column(db.Integer)
-  _phone_number = db.Column(db.Unicode(20), nullable=False)
-  phone_country_code = db.Column(db.Unicode(8))
 
-  phone_number = db.composite(
-    PhoneNumber,
-    _phone_number,
-    phone_country_code
-  )
+  phone_number = db.Column(PhoneNumberType())
+
   budget_categories = db.relationship("Budget", backref="user", lazy="dynamic")
 
-  __table_args__ = (db.UniqueConstraint('_phone_number', 'phone_country_code'),)
+  __table_args__ = (db.UniqueConstraint('phone_number'),)
 
   def __repr__(self):
     return f"User {self.name}: phone: {self.phone_number}, email: {self.email}, total budget: {self.total_budget}"

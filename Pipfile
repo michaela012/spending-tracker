@@ -11,6 +11,8 @@ flask-sqlalchemy = "*"
 sqlalchemy-utils = "*"
 phonenumbers = "*"
 flask-migrate = "*"
+twilio = "*"
+configparser = "*"
 
 [dev-packages]
 
